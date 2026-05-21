@@ -1,0 +1,110 @@
+.globe-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0 28px var(--accent-glow));
+  animation: globePulse 6s ease-in-out infinite;
+}
+
+.globe-frame svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.globe-large {
+  width: min(460px, 100%);
+}
+
+.globe-small {
+  width: 160px;
+  opacity: 0.15;
+}
+
+.globe-outer {
+  transform-origin: center;
+  animation: globeSpin 60s linear infinite;
+}
+
+.globe-inner {
+  transform-origin: center;
+  animation: globeCounter 35s linear infinite;
+}
+
+.globe-stroke {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.1;
+  opacity: 0.35;
+}
+
+.globe-stroke.strong {
+  opacity: 0.6;
+}
+
+.globe-stroke.faint {
+  opacity: 0.2;
+}
+
+.rotate-15 {
+  transform: rotate(15deg);
+  transform-origin: center;
+}
+
+.rotate-35 {
+  transform: rotate(35deg);
+  transform-origin: center;
+}
+
+.rotate-55 {
+  transform: rotate(55deg);
+  transform-origin: center;
+}
+
+.rotate-75 {
+  transform: rotate(75deg);
+  transform-origin: center;
+}
+
+.rotate-105 {
+  transform: rotate(105deg);
+  transform-origin: center;
+}
+
+.rotate-125 {
+  transform: rotate(125deg);
+  transform-origin: center;
+}
+
+.rotate-145 {
+  transform: rotate(145deg);
+  transform-origin: center;
+}
+
+@keyframes globeSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes globeCounter {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes globePulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 20px var(--accent-glow));
+  }
+  50% {
+    filter: drop-shadow(0 0 32px rgba(255, 69, 0, 0.2));
+  }
+}

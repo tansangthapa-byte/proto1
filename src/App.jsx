@@ -1,121 +1,94 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect } from 'react'
+import portfolio from './data/portfolio.json'
+import Navbar from './components/Navbar/Navbar'
+import CustomCursor from './components/CustomCursor/CustomCursor'
+import Hero from './sections/Hero/Hero'
+import Marquee from './sections/Marquee/Marquee'
+import About from './sections/About/About'
+import Skills from './sections/Skills/Skills'
+import Projects from './sections/Projects/Projects'
+import Timeline from './sections/Timeline/Timeline'
+import Contact from './sections/Contact/Contact'
+import Footer from './sections/Footer/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion) {
+      return undefined
+    }
+
+    let ticking = false
+    const root = document.documentElement
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY
+          const textShift = Math.min(y * 0.14, 72)
+          const globeShift = Math.max(y * -0.08, -40)
+
+          root.style.setProperty('--hero-text-shift', `${textShift}px`)
+          root.style.setProperty('--hero-globe-shift', `${globeShift}px`)
+
+          ticking = false
+        })
+
+        ticking = true
+      }
+    }
+
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      root.style.removeProperty('--hero-text-shift')
+      root.style.removeProperty('--hero-globe-shift')
+    }
+  }, [])
+
+  const normalizeUrl = (value) => {
+    if (!value) {
+      return '#'
+    }
+
+    if (value.startsWith('#') || value.startsWith('mailto:') || value.startsWith('http')) {
+      return value
+    }
+
+    if (value.startsWith('@')) {
+      return `https://x.com/${value.slice(1)}`
+    }
+
+    return `https://${value}`
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    <div className="app-root">
+      <CustomCursor />
+      <Navbar
+        initials={portfolio.identity.initials}
+        status={portfolio.identity.status}
+        statusActive={portfolio.identity.statusActive}
+      />
+      <main>
+        <Hero
+          identity={portfolio.identity}
+          contact={portfolio.contact}
+          projectCount={portfolio.projects.length}
+          milestoneCount={portfolio.timeline.length}
+        />
+        <Marquee items={portfolio.marquee} />
+        <About identity={portfolio.identity} interestTags={portfolio.marquee.slice(0, 6)} />
+        <Skills skills={portfolio.skills} />
+        <Projects projects={portfolio.projects} normalizeUrl={normalizeUrl} />
+        <Timeline items={portfolio.timeline} />
+        <Contact contact={portfolio.contact} normalizeUrl={normalizeUrl} />
+      </main>
+      <Footer identity={portfolio.identity} />
+    </div>
   )
 }
 

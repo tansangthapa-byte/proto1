@@ -1,0 +1,133 @@
+{
+  "identity": {
+    "name": "Tansang Thapa Magar",
+    "initials": "TM",
+    "tagline": "Cybersecurity Student & Ethical Hacker",
+    "degree": "BSc Cybersecurity",
+    "level": "Level 5 — Year 2",
+    "university": "University of Greenwich",
+    "location": "London, UK",
+    "status": "Open for Internships",
+    "statusActive": true,
+    "bio": [
+      "I'm a second-year Cybersecurity student obsessed with breaking things ethically — then building them stronger. My playground is the intersection of network defence, exploit development, and CTF competition.",
+      "When I'm not studying packets or reverse-engineering binaries, I'm contributing to open-source security tools and documenting my CTF write-ups for the community."
+    ],
+    "heroHeadline": "Threats require advanced solutions.",
+    "heroSub": "BSc Cybersecurity · Ethical Hacking · Network Defence"
+  },
+  "contact": {
+    "email": "tansang@example.com",
+    "github": "github.com/tansang",
+    "linkedin": "linkedin.com/in/tansang",
+    "twitter": "@tansang_sec"
+  },
+  "skills": [
+    {
+      "category": "Offensive Security",
+      "items": [
+        { "name": "Metasploit", "level": 80 },
+        { "name": "Burp Suite", "level": 85 },
+        { "name": "Nmap / Masscan", "level": 90 },
+        { "name": "SQLMap", "level": 75 }
+      ]
+    },
+    {
+      "category": "Programming",
+      "items": [
+        { "name": "Python", "level": 85 },
+        { "name": "Bash / Shell", "level": 80 },
+        { "name": "C / C++", "level": 60 },
+        { "name": "JavaScript", "level": 65 }
+      ]
+    },
+    {
+      "category": "Concepts & Tools",
+      "items": [
+        { "name": "Network Protocols", "level": 88 },
+        { "name": "Cryptography", "level": 72 },
+        { "name": "OSINT", "level": 82 },
+        { "name": "Wireshark", "level": 90 }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Network Packet Analyser",
+      "description": "A real-time Python tool for deep packet inspection and traffic visualisation on local networks. Exports to PCAP and generates summary threat reports.",
+      "tags": ["Python", "Scapy", "Wireshark", "SQLite"],
+      "github": "#",
+      "live": "#",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "CTF Write-up Archive",
+      "description": "Documented solutions and methodology breakdowns for 25+ CTF competitions across HackTheBox, TryHackMe, and PicoCTF. Organised by category and difficulty.",
+      "tags": ["Linux", "OSINT", "Reverse Engineering", "Web Exploitation"],
+      "github": "#",
+      "live": "#",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Auto Vulnerability Scanner",
+      "description": "Automated multi-threaded scanner that runs Nmap, checks CVE databases, and generates PDF vulnerability reports for small business network audits.",
+      "tags": ["Python", "Nmap", "REST API", "ReportLab"],
+      "github": "#",
+      "live": null,
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "E2E Encrypted Chat",
+      "description": "Peer-to-peer encrypted messaging application using RSA for key exchange and AES-256-GCM for message encryption. No server stores message content.",
+      "tags": ["Python", "Cryptography", "Sockets", "Tkinter"],
+      "github": "#",
+      "live": null,
+      "featured": false
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2024 – Present",
+      "title": "BSc Cybersecurity — Level 5",
+      "org": "University of Greenwich",
+      "type": "education"
+    },
+    {
+      "year": "2024",
+      "title": "CompTIA Security+ (in progress)",
+      "org": "CompTIA",
+      "type": "cert"
+    },
+    {
+      "year": "2023",
+      "title": "BSc Cybersecurity — Level 4",
+      "org": "University of Greenwich",
+      "type": "education"
+    },
+    {
+      "year": "2023",
+      "title": "Google Cybersecurity Certificate",
+      "org": "Google / Coursera",
+      "type": "cert"
+    }
+  ],
+  "marquee": [
+    "Wireshark",
+    "Metasploit",
+    "Kali Linux",
+    "Burp Suite",
+    "Python",
+    "Nmap",
+    "CTF",
+    "OSINT",
+    "Cryptography",
+    "Network Security",
+    "Ethical Hacking",
+    "TryHackMe",
+    "HackTheBox"
+  ]
+}

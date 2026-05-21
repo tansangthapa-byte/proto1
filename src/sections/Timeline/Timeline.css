@@ -1,0 +1,123 @@
+.timeline-section {
+  padding: var(--section-pad);
+}
+
+.timeline-shell {
+  display: grid;
+  gap: 3rem;
+}
+
+.timeline-track {
+  position: relative;
+}
+
+.timeline-items {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.timeline-line {
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1s var(--ease-out-expo);
+}
+
+.timeline-shell.revealed .timeline-line {
+  transform: scaleY(1);
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  align-items: center;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: calc(50% - 6px);
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-50%);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.timeline-card {
+  width: calc(50% - 2rem);
+  margin-left: auto;
+  padding: 1.2rem;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.7s var(--ease-out-expo), opacity 0.7s var(--ease-out-expo);
+}
+
+.timeline-shell.revealed .timeline-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item.left .timeline-card {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.timeline-year,
+.timeline-org {
+  font-family: var(--font-mono);
+}
+
+.timeline-year {
+  color: var(--accent);
+  letter-spacing: 0.14em;
+}
+
+.timeline-org {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.timeline-type {
+  display: inline-flex;
+  margin-top: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 69, 0, 0.12);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+}
+
+.timeline-type.cert {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
+@media (max-width: 767px) {
+  .timeline-line {
+    left: 5px;
+  }
+
+  .timeline-dot {
+    left: 0;
+  }
+
+  .timeline-card,
+  .timeline-item.left .timeline-card {
+    width: calc(100% - 2rem);
+    margin-left: 2rem;
+    margin-right: 0;
+  }
+}
